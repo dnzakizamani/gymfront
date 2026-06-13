@@ -1,0 +1,140 @@
+/* ============================================
+   GYM TRACKER - CSS VARIABLES & GLOBAL STYLES
+   ============================================ */
+
+:root {
+    /* Primary Colors */
+    --color-info: #FF6B35;
+    --color-info-hover: #E55A28;
+    --color-info-light: rgba(255, 107, 53, 0.1);
+
+    /* Text Colors */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #B0B0B0;
+    --color-text-tertiary: #666666;
+    --color-text-info: #FF6B35;
+    --color-text-white: #ffffff;
+
+    /* Background Colors */
+    --color-background-primary: #1a1a1a;
+    --color-background-secondary: #0F0F0F;
+    --color-background-tertiary: #222222;
+
+    /* Border Colors */
+    --color-border-tertiary: rgba(255, 255, 255, 0.15);
+    --color-border-secondary: rgba(255, 255, 255, 0.3);
+    --color-border-primary: rgba(255, 255, 255, 0.4);
+    --color-border-info: #FF6B35;
+
+    /* Semantic Colors */
+    --color-success: #22c55e;
+    --color-success-light: rgba(34, 197, 94, 0.1);
+    --color-warning: #f59e0b;
+    --color-warning-light: rgba(245, 158, 11, 0.1);
+    --color-danger: #ef4444;
+    --color-danger-light: rgba(239, 68, 68, 0.1);
+
+    /* Border Radius */
+    --border-radius-sm: 6px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 48px;
+
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Anthropic Sans', 'Roboto', sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 100ms ease-out;
+    --transition-normal: 200ms ease-out;
+    --transition-slow: 300ms ease-out;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-secondary);
+    min-height: 100vh;
+}
+
+a {
+    color: var(--color-info);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-info-hover);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+input {
+    font-family: inherit;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

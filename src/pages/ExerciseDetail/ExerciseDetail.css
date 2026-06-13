@@ -1,0 +1,358 @@
+.exercise-detail {
+    padding-bottom: 120px;
+    /* Increased to ensure content isn't covered by fixed Log Workout button */
+}
+
+.exercise-detail-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.exercise-detail-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.exercise-detail-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.exercise-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Exercise Info Card */
+.exercise-detail-info {
+    padding: var(--spacing-lg);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+}
+
+.exercise-detail-info-content {
+    width: 100%;
+}
+
+.exercise-detail-name {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.exercise-detail-equipment {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.exercise-detail-muscles {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.exercise-detail-muscle-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    font-size: var(--font-size-xs);
+    background-color: var(--color-info-light);
+    color: var(--color-text-info);
+    border-radius: var(--border-radius-full);
+}
+
+.exercise-detail-muscle-badge--secondary {
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+}
+
+/* Stats Cards */
+.exercise-detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.exercise-detail-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+}
+
+.exercise-detail-stat-icon {
+    font-size: 24px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.exercise-detail-stat-value {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.exercise-detail-stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Chart Section */
+.exercise-detail-chart-section {
+    padding: var(--spacing-lg);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+}
+
+.exercise-detail-chart-title {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.exercise-detail-chart {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md) 0;
+}
+
+.exercise-detail-chart-bar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.exercise-detail-chart-bar {
+    width: 100%;
+    max-width: 40px;
+    background-color: var(--color-info);
+    border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+    transition: height 0.3s ease;
+}
+
+.exercise-detail-chart-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.exercise-detail-chart-value {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* History Section */
+.exercise-detail-history-section {
+    padding: var(--spacing-lg);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+}
+
+.exercise-detail-history-title {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.exercise-detail-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.exercise-detail-history-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+}
+
+.exercise-detail-history-date {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.exercise-detail-history-sets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.exercise-detail-history-set {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 4px 8px;
+    background-color: var(--color-background-primary);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.exercise-detail-history-set-weight {
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* Log Workout Button */
+.exercise-detail-log-btn {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+/* Delete Action */
+.exercise-detail-delete-section {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border-tertiary);
+    display: flex;
+    justify-content: center;
+}
+
+.exercise-detail-delete-btn {
+    color: var(--color-error, #ef4444);
+    background: transparent;
+    border: 1px solid var(--color-error, #ef4444);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.exercise-detail-delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Modal Overlay */
+.exercise-detail-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.exercise-detail-modal {
+    background-color: var(--color-background-primary, #1c1c1e);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid var(--color-border-tertiary);
+}
+
+.exercise-detail-modal-title {
+    font-size: var(--font-size-lg);
+    color: var(--color-error, #ef4444);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.exercise-detail-modal-message {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.exercise-detail-modal-message strong {
+    color: var(--color-text-primary);
+}
+
+.exercise-detail-modal-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    box-sizing: border-box;
+}
+
+.exercise-detail-modal-input:focus {
+    outline: none;
+    border-color: var(--color-info);
+}
+
+.exercise-detail-modal-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+}
+
+.exercise-detail-modal-actions button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    border: none;
+}
+
+.exercise-detail-modal-cancel {
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-tertiary) !important;
+}
+
+.exercise-detail-modal-confirm {
+    background-color: var(--color-error, #ef4444);
+    color: white;
+}
+
+.exercise-detail-modal-confirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.exercise-detail-chart-section {
+    width: 100%;
+}
+
+.exercise-detail-chart-section svg {
+    display: block;
+    width: 100%;
+    height: 250px;
+}

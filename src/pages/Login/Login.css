@@ -1,0 +1,29 @@
+.login-title {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.login-footer {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.login-footer a {
+    color: var(--color-info);
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}

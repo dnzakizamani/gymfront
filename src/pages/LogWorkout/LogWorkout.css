@@ -1,0 +1,253 @@
+.log-workout {
+    padding-bottom: var(--spacing-xxl);
+}
+
+.log-workout-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.log-workout-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.log-workout-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.log-workout-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Exercise Info Card */
+.log-workout-exercise-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+}
+
+.log-workout-exercise-image {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-primary);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-tertiary);
+    font-size: 20px;
+}
+
+.log-workout-exercise-name {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.log-workout-exercise-equipment {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+/* Date Picker */
+.log-workout-date-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.log-workout-date-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* Sets Section */
+.log-workout-sets-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.log-workout-sets-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.log-workout-sets-title {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.log-workout-set-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.log-workout-set-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+}
+
+.log-workout-set-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.log-workout-set-number {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.log-workout-set-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.log-workout-set-delete:hover {
+    background-color: var(--color-background-secondary);
+    color: var(--color-danger);
+}
+
+.log-workout-set-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.log-workout-set-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.log-workout-set-input-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.log-workout-set-input {
+    height: 36px;
+    padding: 0 var(--spacing-md);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-fast);
+}
+
+.log-workout-set-input:focus {
+    outline: none;
+    border-color: var(--color-info);
+}
+
+.log-workout-set-input::placeholder {
+    color: var(--color-text-tertiary);
+}
+
+/* Add Set Button */
+.log-workout-add-set {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: none;
+    border: 0.5px dashed var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.log-workout-add-set:hover {
+    border-color: var(--color-info);
+    color: var(--color-info);
+    background-color: var(--color-info-light);
+}
+
+/* Notes Section */
+.log-workout-notes-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.log-workout-notes-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.log-workout-notes-input {
+    padding: var(--spacing-md);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    color: var(--color-text-primary);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color var(--transition-fast);
+}
+
+.log-workout-notes-input:focus {
+    outline: none;
+    border-color: var(--color-info);
+}
+
+.log-workout-notes-input::placeholder {
+    color: var(--color-text-tertiary);
+}
+
+/* Action Buttons */
+.log-workout-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.log-workout-actions>* {
+    flex: 1;
+}

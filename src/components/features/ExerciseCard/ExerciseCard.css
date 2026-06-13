@@ -1,0 +1,110 @@
+.exercise-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background-color: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.exercise-card:hover {
+    background-color: var(--color-background-secondary);
+}
+
+.exercise-card:active {
+    transform: scale(0.99);
+}
+
+.exercise-card-image {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+/* Ensure image fills the container while preserving aspect ratio */
+.exercise-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.exercise-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.exercise-card-name {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.exercise-card-equipment {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.exercise-card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.exercise-card-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: var(--font-size-xs);
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+    border-radius: var(--border-radius-full);
+}
+
+.exercise-card-badge--primary {
+    background-color: var(--color-info-light);
+    color: var(--color-text-info);
+}
+
+.exercise-card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
+}
+
+.exercise-card-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.exercise-card-stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.exercise-card-stat-value {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.exercise-card-chevron {
+    color: var(--color-text-tertiary);
+    font-size: 18px;
+}

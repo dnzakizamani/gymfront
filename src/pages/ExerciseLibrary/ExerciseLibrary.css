@@ -1,0 +1,108 @@
+.exercise-library {
+    padding-bottom: var(--spacing-xxl);
+}
+
+.exercise-library-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+}
+
+.exercise-library-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.exercise-library-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.exercise-library-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.exercise-library-header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.exercise-library-view-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.exercise-library-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition-fast);
+}
+
+.exercise-library-view-btn:first-child {
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+}
+
+.exercise-library-view-btn:last-child {
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    border-left: none;
+}
+
+.exercise-library-view-btn:hover {
+    background-color: var(--color-background-secondary);
+}
+
+.exercise-library-view-btn--active {
+    background-color: var(--color-info);
+    border-color: var(--color-info);
+    color: var(--color-text-white);
+}
+
+.exercise-library-search {
+    margin-bottom: var(--spacing-md);
+}
+
+.exercise-library-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.exercise-library-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 600px) {
+    .exercise-library-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .exercise-library-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -1,0 +1,77 @@
+.exercise-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+.exercise-image--sm {
+    width: 48px;
+    height: 48px;
+}
+
+.exercise-image--md {
+    width: 64px;
+    height: 64px;
+}
+
+.exercise-image--lg {
+    width: 120px;
+    height: 120px;
+}
+
+.exercise-image--xl {
+    width: 200px;
+    height: 200px;
+}
+
+.exercise-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exercise-image-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-image--placeholder {
+    background: linear-gradient(135deg, var(--color-background-secondary) 0%, var(--color-background-tertiary) 100%);
+}
+
+.exercise-image-emoji {
+    font-size: 1.5em;
+    filter: grayscale(20%);
+}
+
+.exercise-image--sm .exercise-image-emoji {
+    font-size: 1.2em;
+}
+
+.exercise-image--lg .exercise-image-emoji {
+    font-size: 3em;
+}
+
+.exercise-image--xl .exercise-image-emoji {
+    font-size: 5em;
+}
+
+/* Full width override for ExerciseDetail page */
+.exercise-detail-image-container {
+    width: calc(100% + var(--spacing-lg) * 2);
+    margin: 0 calc(-1 * var(--spacing-lg));
+    padding: 0 var(--spacing-lg);
+    box-sizing: border-box;
+}
+
+.exercise-detail-image-container .exercise-image.exercise-image--xl {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-lg);
+}

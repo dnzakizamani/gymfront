@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TILARS - Track Your Gains | Gym Progress Tracker</title>
+    <meta name="description"
+        content="TILARS - The ultimate gym tracker app. Log workouts, track progress, crush your fitness goals. Built for gym warriors.">
+    <meta name="keywords" content="gym tracker, fitness app, workout logging, progress tracking, gym app">
+    <meta property="og:title" content="TILARS - Track Your Gains">
+    <meta property="og:description"
+        content="The ultimate gym tracker app built for athletes. Log workouts, crush your goals.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #0F0F0F;
+            color: #FFFFFF;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 2px solid #FF6B35;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF6B35;
+            letter-spacing: 2px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .navbar-links a {
+            color: #E8E8E8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .navbar-links a:hover {
+            color: #FF6B35;
+        }
+
+        .navbar-cta {
+            background: #FF6B35;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar-cta:hover {
+            background: #E55A28;
+        }
+
+        .navbar-cta:active {
+            transform: scale(0.98);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #FF6B35 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #B0B0B0;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #FF6B35;
+            color: white;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #E55A28;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FF6B35;
+            padding: 12px 36px;
+            border: 2px solid #FF6B35;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #FF6B35;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
+        .hero-graphic {
+            font-size: 120px;
+            margin-top: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            background: #0F0F0F;
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #B0B0B0;
+            font-size: 18px;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            border: 2px solid #FF6B35;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #FF6B35;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: #B0B0B0;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #1a1a1a;
+            padding: 6rem 2rem;
+        }
+
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            color: white;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: #FF6B35;
+            border-radius: 50%;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .step p {
+            color: #B0B0B0;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #0F0F0F;
+            padding: 6rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border-left: 4px solid #FF6B35;
+        }
+
+        .stat-number {
+            font-size: 52px;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #B0B0B0;
+            font-size: 15px;
+        }
+
+        /* Final CTA */
+        .cta-final {
+            background: linear-gradient(90deg, #FF6B35 0%, #FFA500 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-final h2 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-final p {
+            font-size: 18px;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-final .btn-primary {
+            background: white;
+            color: #FF6B35;
+        }
+
+        .cta-final .btn-primary:hover {
+            background: #F0F0F0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0F0F0F;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #B0B0B0;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: #FF6B35;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFA500;
+        }
+
+        .footer-copyright {
+            margin-top: 1.5rem;
+            font-size: 14px;
+        }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #FF6B35;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-graphic {
+                font-size: 80px;
+            }
+
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 20px;
+            }
+
+            .cta-final h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Smooth transitions */
+        a,
+        button {
+            transition: all 0.3s ease;
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #FF6B35;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">TILARS</div>
+        <ul class="navbar-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#stats">Stats</a></li>
+        </ul>
+        <button class="navbar-cta"
+            onclick="document.querySelector('.cta-final').scrollIntoView({ behavior: 'smooth' })">Start Free</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Track Your Gains</h1>
+        <p>Crush your fitness goals with TILARS. Log workouts, track progress, dominate your training.</p>
+
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="alert('Coming soon! Join our waitlist at tilars.app')">Start
+                Now</button>
+            <button class="btn-secondary"
+                onclick="document.querySelector('#features').scrollIntoView({ behavior: 'smooth' })">Learn more</button>
+        </div>
+
+        <div class="hero-graphic">💪</div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Designed for Gym Warriors</h2>
+        <p class="section-subtitle">Everything you need to dominate your training</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Smart Progress Tracking</h3>
+                <p>Visual charts show your strength gains over time. Watch your PRs climb week by week.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🏋️</span>
+                <h3>Exercise Library</h3>
+                <p>Browse 200+ exercises with detailed muscle groups, equipment, and form guides.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Quick Logging</h3>
+                <p>One-tap workout logging. Input sets, reps, weight in seconds. Built for gym speed.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>Personal Records</h3>
+                <p>Auto-track your best performances. Never miss a PR moment again.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3>Mobile-First Design</h3>
+                <p>Built for gym floor. Works offline. Syncs when connected. Zero distractions.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔥</span>
+                <h3>Community Vibes</h3>
+                <p>Share your achievements. Celebrate progress with your gym crew. Stay motivated.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">Get Started in 3 Steps</h2>
+        <p class="section-subtitle">Simple. Fast. Effective.</p>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Sign Up</h3>
+                <p>Create your account in seconds. Email + password. Done.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Add Exercises</h3>
+                <p>Browse our library. Select your favorite exercises. Build your gym playlist.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Log & Track</h3>
+                <p>Hit the gym. Log sets. Watch your progress climb. Dominate.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <h2 class="section-title">By The Numbers</h2>
+        <p class="section-subtitle">Join thousands crushing their goals</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Active users</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">Workouts logged</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Exercises</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">User satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-final">
+        <h2>Ready to Level Up?</h2>
+        <p>Start tracking your fitness journey today. Free forever. No credit card.</p>
+        <button class="btn-primary" onclick="alert('Coming soon! Visit tilars.app to join the waitlist')">Start Your
+            Journey</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-copyright">TILARS © 2024. Built with 💪 for gym warriors everywhere.</p>
+            <ul class="footer-links">
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#terms">Terms</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links (already handled by href and CSS)
+
+        // Hamburger menu toggle (if needed for mobile menu)
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.navbar-links');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                // Can add mobile menu functionality here
+                console.log('Mobile menu clicked');
+            });
+        }
+
+        // Analytics placeholder (add Google Analytics or similar)
+        // window.gtag = function() { console.log('Analytics event'); };
+    </script>
+
+</body>
+
+</html>
