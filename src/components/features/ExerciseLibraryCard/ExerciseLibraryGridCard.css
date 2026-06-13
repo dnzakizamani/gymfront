@@ -73,13 +73,7 @@
     font-weight: 500;
     color: var(--color-text-primary);
     margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     line-height: 1.3;
-    min-height: 39px;
-    /* 2 lines × 1.3 line-height */
 }
 
 /* ======== BADGES ======== */
@@ -97,6 +91,8 @@
 .badge-equipment {
     background-color: var(--color-background-secondary);
     color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
 }
 
 .badge-primary {
@@ -115,6 +111,8 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
 }
 
 /* ======== FOOTER: Last Session + Best PR ======== */
@@ -193,7 +191,7 @@
 /* ======== RESPONSIVE ======== */
 @media (max-width: 768px) {
     .exercise-grid-card {
-        min-height: 460px;
+        min-height: 200px;
     }
 
     .exercise-grid-card-image {
@@ -202,7 +200,6 @@
 
     .exercise-grid-card-name {
         font-size: 14px;
-        min-height: 37px;
     }
 
     .badge {
