@@ -39,7 +39,7 @@ const Landing = () => {
                     <button className="landing-btn-secondary" onClick={() => scrollToSection('features')}>Learn more</button>
                 </div>
 
-                <div className="landing-hero-graphic">💪</div>
+                <img src="/ilusgim.png" alt="TILARS" className="landing-hero-image" />
             </section>
 
             {/* Features Section */}
@@ -150,7 +150,7 @@ const Landing = () => {
             {/* Footer */}
             <footer className="landing-footer">
                 <div className="landing-footer-content">
-                    <p className="landing-footer-copyright">TILARS © 2024. Built with 💪 for gym warriors everywhere.</p>
+                    <p className="landing-footer-copyright">TILARS © 2026. Built with 💪 for gym warriors everywhere.</p>
                     <ul className="landing-footer-links">
                         <li><a href="#privacy">Privacy</a></li>
                         <li><a href="#terms">Terms</a></li>
