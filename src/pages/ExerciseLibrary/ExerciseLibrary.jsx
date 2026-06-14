@@ -22,7 +22,7 @@ const ExerciseLibrary = () => {
     useEffect(() => {
         const fetchExercises = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/exercises?limit=100');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/exercises?limit=100`);
                 const data = await response.json();
                 if (response.ok) {
                     setMasterExercises(data.data);
@@ -38,7 +38,7 @@ const ExerciseLibrary = () => {
             const token = localStorage.getItem('token');
             if (!token) return;
             try {
-                const response = await fetch('http://localhost:3000/api/user-exercises', {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
@@ -94,11 +94,11 @@ const ExerciseLibrary = () => {
         if (!addedExercises.includes(exercise.id)) {
             // Optimistic update
             setAddedExercises([...addedExercises, exercise.id]);
-            
+
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const response = await fetch('http://localhost:3000/api/user-exercises', {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -28,7 +28,7 @@ const ExerciseDetail = () => {
             setLoading(true);
             try {
                 // Fetch exercise details
-                const exerciseRes = await fetch('http://localhost:3000/api/user-exercises?includeStats=true', {
+                const exerciseRes = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises?includeStats=true`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const exerciseDataList = await exerciseRes.json();
@@ -51,7 +51,7 @@ const ExerciseDetail = () => {
                 }
 
                 // Fetch workout history
-                const historyRes = await fetch(`http://localhost:3000/api/workouts?userExerciseId=${id}`, {
+                const historyRes = await fetch(`${process.env.REACT_APP_API_URL}/api/workouts?userExerciseId=${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const historyData = await historyRes.json();
@@ -88,7 +88,7 @@ const ExerciseDetail = () => {
         setIsDeleting(true);
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`http://localhost:3000/api/user-exercises/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

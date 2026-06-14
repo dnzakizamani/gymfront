@@ -25,7 +25,7 @@ const Dashboard = () => {
                 return;
             }
             try {
-                const response = await fetch('http://localhost:3000/api/user-exercises?includeStats=true', {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises?includeStats=true`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();

@@ -29,11 +29,11 @@ const LogWorkout = () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/user-exercises', {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
-                
+
                 if (response.ok) {
                     const userExercise = data.data.find(ue => ue.id === id);
                     if (userExercise) {
@@ -57,11 +57,11 @@ const LogWorkout = () => {
             if (!token) return;
 
             try {
-                const response = await fetch(`http://localhost:3000/api/workouts/${workoutId}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/workouts/${workoutId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
-                
+
                 if (response.ok && data.data) {
                     const w = data.data;
                     setDate(w.workoutDate || new Date().toISOString().split('T')[0]);
@@ -152,10 +152,10 @@ const LogWorkout = () => {
         };
 
         try {
-            const url = workoutId 
-                ? `http://localhost:3000/api/workouts/${workoutId}` 
-                : 'http://localhost:3000/api/workouts';
-            
+            const url = workoutId
+                ? `${process.env.REACT_APP_API_URL}/api/workouts/${workoutId}`
+                : `${process.env.REACT_APP_API_URL}/api/workouts`;
+
             const response = await fetch(url, {
                 method: workoutId ? 'PUT' : 'POST',
                 headers: {
