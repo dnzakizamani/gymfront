@@ -14,7 +14,7 @@ const ExerciseLibraryGridCard = ({ exercise, onAdd, isAdded }) => {
             'Back': '#378ADD',
             'Chest': '#D85A30',
             'Legs': '#639922',
-            'Shoulders': '#BA7517',
+            'Shoulder': '#BA7517',
             'Biceps': '#534AB7',
             'Triceps': '#D4537E',
             'Forearms': '#9E6E1C',
@@ -52,15 +52,18 @@ const ExerciseLibraryGridCard = ({ exercise, onAdd, isAdded }) => {
             {/* Content Section */}
             <div className="exercise-grid-card-content">
                 {/* Exercise Name */}
-                <h3 className="exercise-grid-card-name">{exercise.name} <span className="badge badge-equipment">{exercise.equipment}</span></h3>
+                <h3 className="exercise-grid-card-name">{exercise.name} - {exercise.equipment}</h3>
+
+                {/* Equipment Badge */}
+                {/* <span className="badge badge-equipment">{exercise.equipment}</span> */}
 
                 {/* Muscle Badges (hanya primary + secondary) */}
-                {/* <div className="exercise-grid-card-muscles">
+                <div className="exercise-grid-card-muscles">
                     <span className="badge badge-primary">{exercise.primaryMuscle}</span>
                     {exercise.secondaryMuscle && (
                         <span className="badge badge-secondary">{exercise.secondaryMuscle}</span>
                     )}
-                </div> */}
+                </div>
 
                 {/* Footer: Last Session + Best PR */}
                 {/* <div className="exercise-grid-card-footer">

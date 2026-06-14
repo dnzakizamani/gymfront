@@ -860,7 +860,7 @@ Query params: `?page=2&limit=20`
 
 ### Filtering
 Common filter params:
-- `muscleGroup` - Filter by muscle (Back, Chest, Legs, Shoulders, Arms, Core)
+- `muscleGroup` - Filter by muscle (Back, Chest, Legs, Shoulder, Biceps, Triceps, Core)
 - `equipment` - Filter by equipment type
 - `search` - Text search in name
 

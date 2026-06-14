@@ -38,7 +38,7 @@ const AuthCallback = () => {
             localStorage.setItem('token', token);
 
             // 2. Fetch user profile untuk verify token
-            fetch('http://localhost:3000/api/auth/me', {
+            fetch(`${process.env.REACT_APP_API_URL}/api/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

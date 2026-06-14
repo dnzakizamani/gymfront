@@ -1,6 +1,6 @@
 import './FilterButtons.css';
 
-const MUSCLE_GROUPS = ['All', 'Back', 'Chest', 'Legs', 'Shoulders', 'Arms', 'Core'];
+const MUSCLE_GROUPS = ['All', 'Back', 'Chest', 'Legs', 'Shoulder', 'Biceps', 'Triceps', 'Core'];
 
 const FilterButtons = ({ activeFilter, onFilterChange }) => {
     return (

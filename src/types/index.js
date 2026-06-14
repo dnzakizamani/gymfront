@@ -218,8 +218,8 @@
 // FILTER TYPES
 // ============================================================================
 
-/** @type {Array<'All'|'Back'|'Chest'|'Legs'|'Shoulders'|'Arms'|'Core'>} */
-export const MUSCLE_GROUPS = ['All', 'Back', 'Chest', 'Legs', 'Shoulders', 'Arms', 'Core'];
+/** @type {Array<'All'|'Back'|'Chest'|'Legs'|'Shoulder'|'Biceps'|'Triceps'|'Core'>} */
+export const MUSCLE_GROUPS = ['All', 'Back', 'Chest', 'Legs', 'Shoulder', 'Biceps', 'Triceps', 'Core'];
 
 // ============================================================================
 // API SERVICE - Ready for backend integration

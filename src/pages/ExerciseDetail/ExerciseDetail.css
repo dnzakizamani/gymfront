@@ -239,7 +239,8 @@
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border-tertiary);
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .exercise-detail-delete-btn {
