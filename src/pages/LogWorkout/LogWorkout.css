@@ -251,3 +251,77 @@
 .log-workout-actions>* {
     flex: 1;
 }
+
+/* Responsive Mobile */
+@media (max-width: 640px) {
+    .log-workout {
+        padding-bottom: var(--spacing-xxl);
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+        margin-left: calc(-1 * var(--spacing-md));
+        margin-right: calc(-1 * var(--spacing-md));
+    }
+
+    .log-workout-header {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .log-workout-title {
+        font-size: var(--font-size-lg);
+    }
+
+    /* Exercise Info - Stack on mobile */
+    .log-workout-exercise-info {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .log-workout-exercise-name {
+        font-size: var(--font-size-md);
+    }
+
+    /* Set Card - Full width inputs */
+    .log-workout-set-card {
+        padding: var(--spacing-md);
+    }
+
+    .log-workout-set-inputs {
+        gap: var(--spacing-sm);
+    }
+
+    .log-workout-set-input-group {
+        min-width: 0;
+    }
+
+    .log-workout-set-input {
+        height: 44px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    /* Add Set Button */
+    .log-workout-add-set {
+        padding: var(--spacing-md);
+    }
+
+    /* Notes Input */
+    .log-workout-notes-input {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    /* Action Buttons - Stack on mobile */
+    .log-workout-actions {
+        flex-direction: column-reverse;
+        gap: var(--spacing-sm);
+    }
+
+    .log-workout-actions>* {
+        flex: none;
+        width: 100%;
+    }
+}

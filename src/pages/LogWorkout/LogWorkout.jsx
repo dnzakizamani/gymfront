@@ -115,11 +115,17 @@ const LogWorkout = () => {
         const newErrors = {};
 
         sets.forEach((set, index) => {
-            if (!set.weight || parseFloat(set.weight) <= 0) {
-                newErrors[`${index}-weight`] = 'Required';
-            }
-            if (!set.reps || parseInt(set.reps) <= 0) {
-                newErrors[`${index}-reps`] = 'Required';
+            const hasWeight = set.weight && parseFloat(set.weight) > 0;
+            const hasReps = set.reps && parseInt(set.reps) > 0;
+
+            // If any field is filled, both must be valid
+            if ((hasWeight && !hasReps) || (!hasWeight && hasReps)) {
+                if (!hasWeight) {
+                    newErrors[`${index}-weight`] = 'Required';
+                }
+                if (!hasReps) {
+                    newErrors[`${index}-reps`] = 'Required';
+                }
             }
         });
 
@@ -138,11 +144,21 @@ const LogWorkout = () => {
             return;
         }
 
-        // Prepare workout data
+        // Prepare workout data - only include sets with valid weight and reps
+        const validSets = sets.filter(set =>
+            set.weight && parseFloat(set.weight) > 0 &&
+            set.reps && parseInt(set.reps) > 0
+        );
+
+        if (validSets.length === 0) {
+            alert('Please fill at least one set with weight and reps');
+            return;
+        }
+
         const workoutData = {
             userExerciseId: id,
             workoutDate: date,
-            sets: sets.map((set, index) => ({
+            sets: validSets.map((set, index) => ({
                 setNumber: index + 1,
                 weight: parseFloat(set.weight),
                 reps: parseInt(set.reps),
@@ -225,7 +241,7 @@ const LogWorkout = () => {
                 <div className="log-workout-content">
                     {/* Exercise Info */}
                     <div className="log-workout-exercise-info">
-                        <div className="log-workout-exercise-image">💪</div>
+                        {/* <div className="log-workout-exercise-image">💪</div> */}
                         <div>
                             <h2 className="log-workout-exercise-name">{exercise.name}</h2>
                             <p className="log-workout-exercise-equipment">
