@@ -3,21 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import AppLayout from '../../components/layout/AppLayout';
 import Input from '../../components/common/Input';
 import FilterButtons from '../../components/features/FilterButtons';
-import ExerciseLibraryCard from '../../components/features/ExerciseLibraryCard';
 import ExerciseLibraryGridCard from '../../components/features/ExerciseLibraryCard/ExerciseLibraryGridCard';
 import EmptyState from '../../components/common/EmptyState';
 import './ExerciseLibrary.css';
-
 
 
 const ExerciseLibrary = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('All');
-    const [addedExercises, setAddedExercises] = useState([]);
-    const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
+    const [selectedExercises, setSelectedExercises] = useState([]);
     const [masterExercises, setMasterExercises] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [userExerciseIds, setUserExerciseIds] = useState([]);
+    const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -29,8 +27,6 @@ const ExerciseLibrary = () => {
                 }
             } catch (error) {
                 console.error('Failed to fetch exercises:', error);
-            } finally {
-                setIsLoading(false);
             }
         };
 
@@ -43,7 +39,7 @@ const ExerciseLibrary = () => {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    setAddedExercises(data.data.map(ue => ue.exercise.id));
+                    setUserExerciseIds(data.data.map(ue => ue.exercise.id));
                 }
             } catch (error) {
                 console.error('Failed to fetch user exercises:', error);
@@ -55,18 +51,19 @@ const ExerciseLibrary = () => {
     }, []);
 
     const filteredExercises = useMemo(() => {
-        let result = masterExercises.map(ex => {
-            const primaryMuscle = ex.muscles?.find(m => m.isPrimary)?.name || '';
-            const secondaryMuscle = ex.muscles?.find(m => !m.isPrimary)?.name || '';
-            return {
-                ...ex,
-                primaryMuscle,
-                secondaryMuscle,
-                equipment: ex.equipment?.name || ''
-            };
-        });
+        let result = masterExercises
+            .filter(ex => !userExerciseIds.includes(ex.id))
+            .map(ex => {
+                const primaryMuscle = ex.muscles?.find(m => m.isPrimary)?.name || '';
+                const secondaryMuscle = ex.muscles?.find(m => !m.isPrimary)?.name || '';
+                return {
+                    ...ex,
+                    primaryMuscle,
+                    secondaryMuscle,
+                    equipment: ex.equipment?.name || ''
+                };
+            });
 
-        // Filter by search query
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             result = result.filter(
@@ -77,7 +74,6 @@ const ExerciseLibrary = () => {
             );
         }
 
-        // Filter by muscle group
         if (activeFilter !== 'All') {
             result = result.filter(
                 (exercise) =>
@@ -88,34 +84,45 @@ const ExerciseLibrary = () => {
         }
 
         return result;
-    }, [searchQuery, activeFilter, masterExercises]);
+    }, [searchQuery, activeFilter, masterExercises, userExerciseIds]);
 
-    const handleAddExercise = async (exercise) => {
-        if (!addedExercises.includes(exercise.id)) {
-            // Optimistic update
-            setAddedExercises([...addedExercises, exercise.id]);
-
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify({ exerciseId: exercise.id })
-                    });
-                    if (!response.ok) {
-                        // Revert optimistic update on failure
-                        setAddedExercises(addedExercises.filter(id => id !== exercise.id));
-                    }
-                } catch (error) {
-                    console.error('Failed to add exercise:', error);
-                    // Revert optimistic update on failure
-                    setAddedExercises(addedExercises.filter(id => id !== exercise.id));
-                }
+    const handleToggleExercise = (exercise) => {
+        setSelectedExercises(prev => {
+            const isSelected = prev.some(e => e.id === exercise.id);
+            if (isSelected) {
+                return prev.filter(e => e.id !== exercise.id);
+            } else {
+                return [...prev, exercise];
             }
+        });
+    };
+
+    const handleRemoveExercise = (exerciseId) => {
+        setSelectedExercises(prev => prev.filter(e => e.id !== exerciseId));
+    };
+
+    const handleSave = async () => {
+        if (selectedExercises.length === 0) return;
+
+        setIsSaving(true);
+        const token = localStorage.getItem('token');
+
+        try {
+            for (const exercise of selectedExercises) {
+                await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ exerciseId: exercise.id })
+                });
+            }
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Failed to save exercises:', error);
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -137,24 +144,6 @@ const ExerciseLibrary = () => {
                         </button>
                         <h1 className="exercise-library-title">Add Exercise</h1>
                     </div>
-                    <div className="exercise-library-header-right">
-                        <div className="exercise-library-view-toggle">
-                            <button
-                                className={`exercise-library-view-btn ${viewMode === 'list' ? 'exercise-library-view-btn--active' : ''}`}
-                                onClick={() => setViewMode('list')}
-                                aria-label="List view"
-                            >
-                                ☰
-                            </button>
-                            <button
-                                className={`exercise-library-view-btn ${viewMode === 'grid' ? 'exercise-library-view-btn--active' : ''}`}
-                                onClick={() => setViewMode('grid')}
-                                aria-label="Grid view"
-                            >
-                                ⊞
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="exercise-library-search">
@@ -172,43 +161,53 @@ const ExerciseLibrary = () => {
                     onFilterChange={setActiveFilter}
                 />
 
-                {viewMode === 'list' ? (
-                    <div className="exercise-library-content">
-                        {filteredExercises.length > 0 ? (
-                            filteredExercises.map((exercise) => (
-                                <ExerciseLibraryCard
-                                    key={exercise.id}
-                                    exercise={exercise}
-                                    onAdd={handleAddExercise}
-                                    isAdded={addedExercises.includes(exercise.id)}
-                                />
-                            ))
-                        ) : (
-                            <EmptyState
-                                icon="🔍"
-                                title="No exercises found"
-                                message="Try adjusting your search or filter to find exercises."
+                <div className="exercise-library-grid">
+                    {filteredExercises.length > 0 ? (
+                        filteredExercises.map((exercise) => (
+                            <ExerciseLibraryGridCard
+                                key={exercise.id}
+                                exercise={exercise}
+                                onToggle={handleToggleExercise}
+                                isSelected={selectedExercises.some(e => e.id === exercise.id)}
                             />
-                        )}
-                    </div>
-                ) : (
-                    <div className="exercise-library-grid">
-                        {filteredExercises.length > 0 ? (
-                            filteredExercises.map((exercise) => (
-                                <ExerciseLibraryGridCard
-                                    key={exercise.id}
-                                    exercise={exercise}
-                                    onAdd={handleAddExercise}
-                                    isAdded={addedExercises.includes(exercise.id)}
-                                />
-                            ))
-                        ) : (
-                            <EmptyState
-                                icon="🔍"
-                                title="No exercises found"
-                                message="Try adjusting your search or filter to find exercises."
-                            />
-                        )}
+                        ))
+                    ) : (
+                        <EmptyState
+                            icon="🔍"
+                            title="No exercises found"
+                            message="Try adjusting your search or filter to find exercises."
+                        />
+                    )}
+                </div>
+
+                {/* Floating Selection Summary */}
+                {selectedExercises.length > 0 && (
+                    <div className="exercise-library-selection-bar">
+                        <div className="exercise-library-selection-summary">
+                            <span className="exercise-library-selection-count">
+                                {selectedExercises.length} exercise selected
+                            </span>
+                            <div className="exercise-library-selection-list">
+                                {selectedExercises.map(exercise => (
+                                    <span key={exercise.id} className="exercise-library-selection-tag">
+                                        {exercise.name} - {exercise.equipment}
+                                        <button
+                                            onClick={() => handleRemoveExercise(exercise.id)}
+                                            className="exercise-library-selection-remove"
+                                        >
+                                            ×
+                                        </button>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <button
+                            className="exercise-library-save-btn"
+                            onClick={handleSave}
+                            disabled={isSaving}
+                        >
+                            {isSaving ? 'Saving...' : `${selectedExercises.length} Selected`}
+                        </button>
                     </div>
                 )}
             </div>

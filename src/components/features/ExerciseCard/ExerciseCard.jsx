@@ -49,7 +49,7 @@ const ExerciseCard = ({ exercise }) => {
                 </div>
             </div>
 
-            <div className="exercise-card-meta">
+            {/* <div className="exercise-card-meta">
                 <div className="exercise-card-stat">
                     <span className="exercise-card-stat-label">Last</span>
                     <span className="exercise-card-stat-value">
@@ -62,7 +62,7 @@ const ExerciseCard = ({ exercise }) => {
                         {formatWeight(exercise.personalRecord)}
                     </span>
                 </div>
-            </div>
+            </div> */}
 
             <span className="exercise-card-chevron">›</span>
         </div>

@@ -300,7 +300,7 @@ const ExerciseDetail = () => {
                                     width="100%"
                                     height="250"
                                     viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-                                    preserveAspectRatio="none"
+                                    preserveAspectRatio="xMidYMid meet"
                                 >
                                     <defs>
                                         <linearGradient
@@ -501,10 +501,10 @@ const ExerciseDetail = () => {
                                                     25
                                                 }
                                                 textAnchor="middle"
-                                                fontSize="18"
+                                                fontSize="14"
                                                 fill="rgba(255,255,255,0.5)"
                                             >
-                                                {i + 1}
+                                                {d.date}
                                             </text>
                                         );
                                     })}
@@ -512,6 +512,20 @@ const ExerciseDetail = () => {
                             </div>
                         );
                     })()}
+
+                    {/* Log Workout Button */}
+                    <div className="exercise-library-selection-bar">
+                            {/* <Button variant="primary" onClick={handleLogWorkout}>
+                                + Log Workout
+                            </Button> */}
+
+                            <button
+                                className="exercise-library-save-btn"
+                                onClick={handleLogWorkout}
+                            >
+                                + Log Workout
+                            </button>
+                    </div>
 
                     {/* Workout History */}
                     <div className="exercise-detail-history-section">
@@ -574,12 +588,6 @@ const ExerciseDetail = () => {
                     </div>
                 </div>
 
-                {/* Log Workout Button */}
-                <div className="exercise-detail-log-btn">
-                    <Button variant="primary" onClick={handleLogWorkout}>
-                        + Log Workout
-                    </Button>
-                </div>
 
                 {/* Delete Confirmation Modal */}
                 {showDeleteModal && (

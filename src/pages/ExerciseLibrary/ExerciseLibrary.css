@@ -1,5 +1,5 @@
 .exercise-library {
-    padding-bottom: var(--spacing-xxl);
+    padding-bottom: 120px;
 }
 
 .exercise-library-header {
@@ -34,59 +34,8 @@
     color: var(--color-text-primary);
 }
 
-.exercise-library-header-right {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-.exercise-library-view-toggle {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-}
-
-.exercise-library-view-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: none;
-    border: 0.5px solid var(--color-border-tertiary);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    font-size: 16px;
-    transition: all var(--transition-fast);
-}
-
-.exercise-library-view-btn:first-child {
-    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
-}
-
-.exercise-library-view-btn:last-child {
-    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-    border-left: none;
-}
-
-.exercise-library-view-btn:hover {
-    background-color: var(--color-background-secondary);
-}
-
-.exercise-library-view-btn--active {
-    background-color: var(--color-info);
-    border-color: var(--color-info);
-    color: var(--color-text-white);
-}
-
 .exercise-library-search {
     margin-bottom: var(--spacing-md);
-}
-
-.exercise-library-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
 }
 
 .exercise-library-grid {
@@ -105,4 +54,118 @@
     .exercise-library-grid {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+
+/* ======== FLOATING SELECTION BAR ======== */
+.exercise-library-selection-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-background-primary);
+    border-top: 1px solid var(--color-border-tertiary);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    animation: slideUp 0.2s ease-out;
+}
+
+@media (min-width: 641px) {
+    .exercise-library-selection-bar {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        max-width: 770px;
+        width: 100%;
+        border-left: 1px solid var(--color-border-tertiary);
+        border-right: 1px solid var(--color-border-tertiary);
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.exercise-library-selection-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.exercise-library-selection-count {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    flex-shrink: 0;
+}
+
+.exercise-library-selection-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+}
+
+.exercise-library-selection-list::-webkit-scrollbar {
+    display: none;
+}
+
+.exercise-library-selection-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: var(--color-background-secondary);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.exercise-library-selection-remove {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+    margin-left: 2px;
+}
+
+.exercise-library-selection-remove:hover {
+    color: #FF6B00;
+}
+
+.exercise-library-save-btn {
+    width: 100%;
+    padding: 18px;
+    background: #FF6B00;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.exercise-library-save-btn:hover {
+    background: #E55D00;
+}
+
+.exercise-library-save-btn:disabled {
+    background: #CCC;
+    cursor: not-allowed;
 }
