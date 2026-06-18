@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Min height untuk konsistensi */
     min-height: 200px;
     background-color: var(--color-background-primary);
     border: 0.5px solid var(--color-border-tertiary);
@@ -15,10 +14,9 @@
     position: relative;
 }
 
-/* Hover Effect: Lift up dengan shadow */
 .exercise-grid-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     border-color: var(--color-border-secondary);
 }
 
@@ -26,34 +24,144 @@
     transform: scale(0.98);
 }
 
-/* ======== IMAGE SECTION ======== */
-/* Fixed square image: 200px × 200px */
-.exercise-grid-card-image {
-    flex-shrink: 0;
-    width: 100%;
-    height: 200px;
-    aspect-ratio: 1 / 1;
-    /* Force square */
+/* Selected state - orange border */
+.exercise-grid-card--selected {
+    border-color: #FF6B00 !important;
+    border-width: 2px;
+    transition: none;
+}
+
+.exercise-grid-card-check {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    background: #FF6B00;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    color: var(--color-text-tertiary);
-    overflow: hidden;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.exercise-grid-card-info {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 1.5px solid #555;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.2s ease;
+}
+
+.exercise-grid-card-info:hover {
+    border-color: #333;
+    color: #333;
+    transform: scale(1.1);
+}
+
+/* ======== MODAL ======== */
+.exercise-grid-card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.exercise-grid-card-modal-content {
     position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.exercise-grid-card-modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.exercise-grid-card-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-grid-card-modal-close:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.exercise-grid-card-modal-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    font-size: 100px;
+    opacity: 0.4;
+}
+
+/* ======== IMAGE SECTION - Perfect Square ======== */
+.exercise-grid-card-image {
+    flex-shrink: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    background: #ffffff;
+}
+
+.exercise-grid-card-image > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .exercise-grid-card-image img {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
-    /* Gambar tertampil penuh, tidak di-crop */
-    padding: 0px;
-    /* Sedikit padding supaya gambar tidak touching edge */
+    padding: 8px;
 }
 
 .exercise-grid-card-placeholder {
-    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
     opacity: 0.4;
 }
 
@@ -61,38 +169,34 @@
 .exercise-grid-card-content {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    gap: 0.75rem;
+    padding: 0.75rem;
+    gap: 0.5rem;
     flex: 1;
-    /* Mengisi sisa space */
 }
 
-/* Exercise Name */
 .exercise-grid-card-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--color-text-primary);
     margin: 0;
     line-height: 1.3;
 }
 
+.exercise-grid-card-equipment {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+}
+
 /* ======== BADGES ======== */
 .badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
-    font-size: 12px;
-    border-radius: 12px;
+    padding: 3px 8px;
+    font-size: 11px;
+    border-radius: 10px;
     font-weight: 500;
     white-space: nowrap;
     width: fit-content;
-}
-
-.badge-equipment {
-    background-color: var(--color-background-secondary);
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
 }
 
 .badge-primary {
@@ -106,132 +210,23 @@
     color: var(--color-text-secondary);
 }
 
-/* Muscles container - hanya 2 badges */
 .exercise-grid-card-muscles {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-}
-
-/* ======== FOOTER: Last Session + Best PR ======== */
-.exercise-grid-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 0.5px solid var(--color-border-tertiary);
-    padding-top: 0.75rem;
-    gap: 0.5rem;
-    font-size: 13px;
-    margin: 0.5rem 0;
-}
-
-.footer-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-}
-
-.footer-label {
-    color: var(--color-text-secondary);
-    font-size: 11px;
-    margin-bottom: 2px;
-}
-
-.footer-value {
-    color: var(--color-text-primary);
-    font-weight: 500;
-    font-size: 13px;
-}
-
-.footer-divider {
-    width: 0.5px;
-    height: 24px;
-    background-color: var(--color-border-tertiary);
-}
-
-/* ======== ACTION BUTTON ======== */
-.exercise-grid-card-action {
-    margin-top: auto;
-    /* Push to bottom */
-}
-
-.exercise-grid-card-button {
-    width: 100%;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* ======== ADDED STATE ======== */
-.exercise-grid-card--added {
-    border-color: var(--color-info);
-    background-color: rgba(55, 138, 221, 0.05);
-}
-
-.exercise-grid-card-added-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 28px;
-    height: 28px;
-    background-color: var(--color-info);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    z-index: 10;
 }
 
 /* ======== RESPONSIVE ======== */
 @media (max-width: 768px) {
-    .exercise-grid-card {
-        min-height: 200px;
-    }
-
     .exercise-grid-card-image {
-        height: 180px;
-    }
-
-    .exercise-grid-card-name {
-        font-size: 14px;
-    }
-
-    .badge {
-        padding: 3px 8px;
-        font-size: 11px;
-    }
-
-    .exercise-grid-card-footer {
-        font-size: 12px;
-    }
-
-    .footer-label {
-        font-size: 10px;
-    }
-
-    .footer-value {
-        font-size: 12px;
+        padding-bottom: 75%;
     }
 }
 
 @media (max-width: 480px) {
-    .exercise-grid-card {
-        min-height: 200px;
-    }
-
-    .exercise-grid-card-image {
-        height: 160px;
-    }
-
     .exercise-grid-card-content {
-        padding: 0.75rem;
-        gap: 0rem;
+        padding: 0.5rem;
+        gap: 0.25rem;
     }
 
     .exercise-grid-card-name {

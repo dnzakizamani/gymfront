@@ -26,7 +26,7 @@ const Button = ({
     return (
         <button
             type={type}
-            className={classes}
+            className={classes} 
             disabled={disabled}
             onClick={onClick}
             {...props}

@@ -252,6 +252,16 @@
     flex: 1;
 }
 
+/* Responsive Desktop - limit width and center */
+@media (min-width: 641px) {
+    .log-workout {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+    }
+}
+
 /* Responsive Mobile */
 @media (max-width: 640px) {
     .log-workout {

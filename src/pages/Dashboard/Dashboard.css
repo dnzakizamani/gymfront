@@ -65,6 +65,61 @@
     color: var(--color-text-white);
 }
 
+/* ======== INSIGHT FOR TODAY SECTION ======== */
+.dashboard-insight-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-insight-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.dashboard-insight-cards {
+    display: flex;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: var(--spacing-sm);
+}
+
+.dashboard-insight-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.dashboard-insight-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-background-tertiary) 0%, var(--color-background-secondary) 100%);
+    border: 1px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.dashboard-insight-card:hover {
+    border-color: var(--color-info);
+    transform: translateY(-2px);
+}
+
+.dashboard-insight-icon {
+    font-size: 24px;
+}
+
+.dashboard-insight-quote {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    margin: 0;
+}
+
 .dashboard-content {
     display: flex;
     flex-direction: column;
@@ -117,4 +172,9 @@
 .dashboard-stat-label {
     font-size: var(--font-size-xs);
     color: var(--color-text-secondary);
+}
+
+/* ======== SEARCH SECTION ======== */
+.dashboard-search-section {
+    margin-bottom: var(--spacing-lg);
 }

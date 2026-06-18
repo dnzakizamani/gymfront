@@ -66,7 +66,7 @@ const Landing = () => {
                         <p>One-tap workout logging. Input sets, reps, weight in seconds. Built for gym speed.</p>
                     </div>
 
-                    <div className="landing-feature-card">
+                    {/* <div className="landing-feature-card">
                         <span className="landing-feature-icon">🎯</span>
                         <h3>Personal Records</h3>
                         <p>Auto-track your best performances. Never miss a PR moment again.</p>
@@ -82,7 +82,7 @@ const Landing = () => {
                         <span className="landing-feature-icon">🔥</span>
                         <h3>Community Vibes</h3>
                         <p>Share your achievements. Celebrate progress with your gym crew. Stay motivated.</p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
