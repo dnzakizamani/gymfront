@@ -19,13 +19,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: none;
+    width: 40px;
+    height: 40px;
+    background: var(--color-info);
     border: none;
-    color: var(--color-text-primary);
+    border-radius: 50%;
+    color: var(--color-text-white);
     cursor: pointer;
     font-size: 20px;
+    transition: all var(--transition-fast);
+    /* box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3); */
+}
+
+.exercise-library-back i {
+    font-size: 20px;
+}
+
+.exercise-library-back:hover {
+    background: var(--color-info-hover);
+    transform: scale(1.05);
+    /* box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4); */
+}
+
+.exercise-library-back:active {
+    transform: scale(0.95);
 }
 
 .exercise-library-title {

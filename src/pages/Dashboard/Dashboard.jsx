@@ -7,7 +7,29 @@ import ExerciseCard from '../../components/features/ExerciseCard';
 import ExerciseLibraryGridCard from '../../components/features/ExerciseLibraryCard/ExerciseLibraryGridCard';
 import FilterButtons from '../../components/features/FilterButtons';
 import EmptyState from '../../components/common/EmptyState';
+import useAuthStore from '../../store/authStore';
 import './Dashboard.css';
+
+const getTimeBasedGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good Morning';
+    if (hour < 18) return 'Good Afternoon';
+    return 'Good Evening';
+};
+
+const getRandomMotivationalMessage = () => {
+    const messages = [
+        "Let's train your body today! 💪",
+        "Time for a workout! Keep it up! 🔥",
+        "Today is the perfect day for fitness! 🏋️",
+        "Be the best version of yourself today! ✨",
+        "Stay consistent, stay strong! 💪",
+        "Let's go, gym warriors! 🏆",
+        "Time to make new progress! 🚀",
+        "Today we train harder than yesterday! 🎯"
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+};
 
 const MOTIVATIONAL_QUOTES = [
     "Push yourself, because no one else is going to do it for you.",
@@ -40,6 +62,11 @@ const Dashboard = () => {
     const [userExercises, setUserExercises] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [motivationalQuotes] = useState(() => getRandomQuotes(MOTIVATIONAL_QUOTES, 4));
+    const [motivationalMessage] = useState(getRandomMotivationalMessage());
+    
+    // Get user from auth store
+    const user = useAuthStore((state) => state.user);
+    const userName = user?.name || user?.fullName || user?.username || 'Gym Warrior';
 
     useEffect(() => {
         const fetchUserExercises = async () => {
@@ -138,8 +165,17 @@ const Dashboard = () => {
                             </button>
                         </div>
                         <Button variant="primary" size="sm" onClick={handleAddExercise}>
-                            + Add
+                            + Add Exercise
                         </Button>
+                    </div>
+                </div>
+
+                {/* Welcome Card */}
+                <div className="dashboard-welcome-card">
+                    <span className="dashboard-welcome-icon">👋</span>
+                    <div className="dashboard-welcome-content">
+                        <p className="dashboard-welcome-greeting">{getTimeBasedGreeting()}, {userName}!</p>
+                        <p className="dashboard-welcome-message">{motivationalMessage}</p>
                     </div>
                 </div>
 
@@ -221,6 +257,31 @@ const Dashboard = () => {
                         onAction={handleAddExercise}
                     />
                 )}
+
+                {/* Bottom Navigation Bar */}
+                {/* <nav className="dashboard-bottom-nav">
+                    <button 
+                        className="dashboard-bottom-nav-btn dashboard-bottom-nav-btn--active"
+                        onClick={() => navigate('/dashboard')}
+                    >
+                        <i className="ri-home-line dashboard-bottom-nav-icon"></i>
+                        <span className="dashboard-bottom-nav-label">Home</span>
+                    </button>
+                    <button 
+                        className="dashboard-bottom-nav-btn"
+                        onClick={() => navigate('/log')}
+                    >
+                        <i className="ri-pencil-line dashboard-bottom-nav-icon"></i>
+                        <span className="dashboard-bottom-nav-label">Log</span>
+                    </button>
+                    <button 
+                        className="dashboard-bottom-nav-btn"
+                        onClick={() => navigate('/analytics')}
+                    >
+                        <i className="ri-bar-chart-line dashboard-bottom-nav-icon"></i>
+                        <span className="dashboard-bottom-nav-label">Analytics</span>
+                    </button>
+                </nav> */}
             </div>
         </AppLayout>
     );

@@ -200,7 +200,7 @@ const LogWorkout = () => {
                 <div className="log-workout">
                     <div className="log-workout-header">
                         <button className="log-workout-back" onClick={handleBack}>
-                            ‹
+                            <i className="ri-arrow-left-line"></i>
                         </button>
                         <h1 className="log-workout-title">Loading...</h1>
                     </div>
@@ -215,7 +215,7 @@ const LogWorkout = () => {
                 <div className="log-workout">
                     <div className="log-workout-header">
                         <button className="log-workout-back" onClick={handleBack}>
-                            ‹
+                            <i className="ri-arrow-left-line"></i>
                         </button>
                         <h1 className="log-workout-title">Exercise not found</h1>
                     </div>
@@ -233,7 +233,7 @@ const LogWorkout = () => {
                         onClick={handleBack}
                         aria-label="Go back"
                     >
-                        ‹
+                        <i className="ri-arrow-left-line"></i>
                     </button>
                     <h1 className="log-workout-title">{workoutId ? 'Edit Workout' : 'Log Workout'}</h1>
                 </div>

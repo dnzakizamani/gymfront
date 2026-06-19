@@ -104,10 +104,48 @@
     transition: all var(--transition-fast);
 }
 
-.dashboard-insight-card:hover {
+/* ======== WELCOME CARD ======== */
+.dashboard-welcome-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-info) 0%, var(--color-info-hover) 100%);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.dashboard-welcome-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.dashboard-welcome-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.dashboard-welcome-greeting {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text-white);
+    margin: 0;
+}
+
+.dashboard-welcome-message {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* .dashboard-insight-card:hover {
     border-color: var(--color-info);
     transform: translateY(-2px);
-}
+} */
 
 .dashboard-insight-icon {
     font-size: 24px;
@@ -178,3 +216,58 @@
 .dashboard-search-section {
     margin-bottom: var(--spacing-lg);
 }
+
+/* ======== BOTTOM NAVIGATION ======== */
+/* .dashboard-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 64px;
+    background-color: var(--color-background-primary);
+    border-top: 0.5px solid var(--color-border-tertiary);
+    padding: 0 var(--spacing-lg);
+    z-index: 100;
+}
+
+.dashboard-bottom-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-fast);
+}
+
+.dashboard-bottom-nav-btn:hover {
+    color: var(--color-text-primary);
+}
+
+.dashboard-bottom-nav-btn--active {
+    color: var(--color-info);
+}
+
+.dashboard-bottom-nav-btn--active:hover {
+    color: var(--color-info);
+}
+
+.dashboard-bottom-nav-icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-bottom-nav-label {
+    font-size: 10px;
+    font-weight: 500;
+} */

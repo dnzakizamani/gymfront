@@ -21,7 +21,7 @@ const Landing = () => {
                     <li><a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }}>How it works</a></li>
                     <li><a href="#stats" onClick={(e) => { e.preventDefault(); scrollToSection('stats'); }}>Stats</a></li>
                 </ul>
-                <button className="landing-navbar-cta" onClick={() => navigate('/login')}>Start Free</button>
+                <button className="landing-navbar-cta" onClick={() => navigate('/login')}>Start Now</button>
                 <button className="landing-hamburger" aria-label="Menu">
                     <span></span>
                     <span></span>
