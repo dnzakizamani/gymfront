@@ -132,7 +132,7 @@ const ExerciseDetail = () => {
                 <div className="exercise-detail">
                     <div className="exercise-detail-header">
                         <button className="exercise-detail-back" onClick={handleBack}>
-                            ‹
+                            <i className="ri-arrow-left-line"></i>
                         </button>
                         <h1 className="exercise-detail-title">Loading...</h1>
                     </div>
@@ -147,7 +147,7 @@ const ExerciseDetail = () => {
                 <div className="exercise-detail">
                     <div className="exercise-detail-header">
                         <button className="exercise-detail-back" onClick={handleBack}>
-                            ‹
+                            <i className="ri-arrow-left-line"></i>
                         </button>
                         <h1 className="exercise-detail-title">Exercise not found</h1>
                     </div>
@@ -167,7 +167,7 @@ const ExerciseDetail = () => {
                         onClick={handleBack}
                         aria-label="Go back"
                     >
-                        ‹
+                        <i className="ri-arrow-left-line"></i>
                     </button>
                     <h1 className="exercise-detail-title">{exercise.name}</h1>
                 </div>

@@ -135,13 +135,13 @@ const ExerciseLibrary = () => {
             <div className="exercise-library">
                 <div className="exercise-library-header">
                     <div className="exercise-library-header-left">
-                        <button
-                            className="exercise-library-back"
-                            onClick={handleBack}
-                            aria-label="Go back"
-                        >
-                            ‹
-                        </button>
+                    <button
+                        className="exercise-library-back"
+                        onClick={handleBack}
+                        aria-label="Go back"
+                    >
+                        <i className="ri-arrow-left-line"></i>
+                    </button>
                         <h1 className="exercise-library-title">Add Exercise</h1>
                     </div>
                 </div>
