@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppLayout from '../../components/layout/AppLayout';
+import BottomNav from '../../components/layout/BottomNav';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import ExerciseCard from '../../components/features/ExerciseCard';
@@ -258,30 +259,7 @@ const Dashboard = () => {
                     />
                 )}
 
-                {/* Bottom Navigation Bar */}
-                {/* <nav className="dashboard-bottom-nav">
-                    <button 
-                        className="dashboard-bottom-nav-btn dashboard-bottom-nav-btn--active"
-                        onClick={() => navigate('/dashboard')}
-                    >
-                        <i className="ri-home-line dashboard-bottom-nav-icon"></i>
-                        <span className="dashboard-bottom-nav-label">Home</span>
-                    </button>
-                    <button 
-                        className="dashboard-bottom-nav-btn"
-                        onClick={() => navigate('/log')}
-                    >
-                        <i className="ri-pencil-line dashboard-bottom-nav-icon"></i>
-                        <span className="dashboard-bottom-nav-label">Log</span>
-                    </button>
-                    <button 
-                        className="dashboard-bottom-nav-btn"
-                        onClick={() => navigate('/analytics')}
-                    >
-                        <i className="ri-bar-chart-line dashboard-bottom-nav-icon"></i>
-                        <span className="dashboard-bottom-nav-label">Analytics</span>
-                    </button>
-                </nav> */}
+                <BottomNav />
             </div>
         </AppLayout>
     );
