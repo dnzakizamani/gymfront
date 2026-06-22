@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import ExerciseLibrary from './pages/ExerciseLibrary';
 import ExerciseDetail from './pages/ExerciseDetail';
 import LogWorkout from './pages/LogWorkout';
+import Log from './pages/Log';
+import Analytics from './pages/Analytics';
 import AuthCallback from './pages/AuthCallback';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
@@ -84,6 +86,22 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <LogWorkout />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/log"
+                element={
+                    <ProtectedRoute>
+                        <Log />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/analytics"
+                element={
+                    <ProtectedRoute>
+                        <Analytics />
                     </ProtectedRoute>
                 }
             />
