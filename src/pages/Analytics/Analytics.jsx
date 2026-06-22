@@ -142,7 +142,7 @@ const Analytics = () => {
 
                 // Process weekly frequency chart
                 if (weeklyRes.status === 'fulfilled' && weeklyRes.value.success) {
-                    setWeeklyData(weeklyRes.value.data.days || []);
+                    setWeeklyData(Array.isArray(weeklyRes.value.data) ? weeklyRes.value.data : (weeklyRes.value.data.days || []));
                 }
 
                 // Process muscle distribution
@@ -273,10 +273,26 @@ const Analytics = () => {
                     {/* Workout Frequency */}
                     <section className="analytics-section">
                         <h2 className="analytics-section-title">Workout Frequency</h2>
-                        <p className="analytics-section-subtitle">How often you work out</p>
-                        <p className="analytics-section-info">Number of logged workout sessions</p>
+                        <p className="analytics-section-subtitle">How often you work out (days)</p>
+
+                        <div className="analytics-frequency-chart">
+                                {weeklyData.map((day) => {
+                                    const height = maxWeeklyCount > 0 ? (day.count / maxWeeklyCount) * 100 : 0;
+                                    return (
+                                        <div key={day.day} className="analytics-frequency-bar">
+                                            <div 
+                                                className="analytics-frequency-bar-fill" 
+                                                style={{ height: `${height}%` }}
+                                            />
+                                            <span className="analytics-frequency-bar-count">{day.count}</span>
+                                            <span className="analytics-frequency-bar-day">{day.day}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        {/* <p className="analytics-section-info">Number of logged workout sessions</p> */}
                         
-                        <div className="analytics-toggle-group analytics-toggle-group--center">
+                        {/* <div className="analytics-toggle-group analytics-toggle-group--center">
                             <button 
                                 className={`analytics-toggle-btn ${activeViewMode === 'stats' ? 'active' : ''}`}
                                 onClick={() => setActiveViewMode('stats')}
@@ -289,9 +305,9 @@ const Analytics = () => {
                             >
                                 Chart
                             </button>
-                        </div>
+                        </div> */}
 
-                        {activeViewMode === 'stats' ? (
+                        {/* {activeViewMode === 'stats' ? (
                             <div className="analytics-frequency-stats">
                                 <div className="analytics-frequency-stat">
                                     <span className="analytics-frequency-label">This Week</span>
@@ -322,7 +338,7 @@ const Analytics = () => {
                                     );
                                 })}
                             </div>
-                        )}
+                        )} */}
                     </section>
 
                     {/* Muscle Distribution */}
