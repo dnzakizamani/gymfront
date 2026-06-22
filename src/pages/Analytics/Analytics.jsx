@@ -250,7 +250,7 @@ const Analytics = () => {
                             <div>
                                 <h2 className="analytics-section-title">Training Volume Chart</h2>
                                 <p className="analytics-section-subtitle">Track your workout intensity over time</p>
-                                <p className="analytics-section-info">📊 Total weight lifted (kg) per {activeVolumePeriod === 'weekly' ? 'week' : 'month'}</p>
+                                <p className="analytics-section-info">Total weight lifted (kg) per {activeVolumePeriod === 'weekly' ? 'week' : 'month'}</p>
                             </div>
                             <div className="analytics-toggle-group">
                                 <button 
@@ -274,7 +274,7 @@ const Analytics = () => {
                     <section className="analytics-section">
                         <h2 className="analytics-section-title">Workout Frequency</h2>
                         <p className="analytics-section-subtitle">How often you work out</p>
-                        <p className="analytics-section-info">📅 Number of logged workout sessions</p>
+                        <p className="analytics-section-info">Number of logged workout sessions</p>
                         
                         <div className="analytics-toggle-group analytics-toggle-group--center">
                             <button 

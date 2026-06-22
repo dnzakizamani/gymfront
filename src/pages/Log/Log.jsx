@@ -242,15 +242,28 @@ const Log = () => {
                                         </div>
 
                                         <div className="workout-card-sets">
-                                            {workout.sets.slice(0, 3).map((set, index) => (
-                                                <span key={set.id} className="workout-set">
-                                                    Set {set.setNumber}: {set.weight}kg × {set.reps}
-                                                </span>
-                                            ))}
-                                            {workout.sets.length > 3 && (
-                                                <span className="workout-set workout-set--more">
-                                                    +{workout.sets.length - 3} more
-                                                </span>
+                                            {/* <div className="workout-sets-header">
+                                                <span className="workout-sets-title">Sets</span>
+                                            </div> */}
+                                            <div className="workout-sets-grid">
+                                                {workout.sets.slice(0, 6).map((set) => (
+                                                    <div 
+                                                        key={set.id} 
+                                                        className={`workout-set-item ${set.isPersonalRecord ? 'is-pr' : ''}`}
+                                                    >
+                                                        <span className="workout-set-number">Set {set.setNumber}</span>
+                                                        <span className="workout-set-weight">{set.weight}</span>
+                                                        <span className="workout-set-reps">× {set.reps}</span>
+                                                        {set.isPersonalRecord && (
+                                                            <span className="workout-set-badge">PR</span>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            {workout.sets.length > 6 && (
+                                                <div className="workout-sets-more">
+                                                    +{workout.sets.length - 6} more sets
+                                                </div>
                                             )}
                                         </div>
                                     </div>
