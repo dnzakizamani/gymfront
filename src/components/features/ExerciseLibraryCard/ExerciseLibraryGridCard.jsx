@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import './ExerciseLibraryGridCard.css';
 
-const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, onAdd }) => {
+const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, isDisabled, onAdd }) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleCardClick = (e) => {
         if (e.target.closest('.exercise-grid-card-info')) return;
+        if (isDisabled) return;
         if (onToggle) {
             onToggle(exercise);
         } else if (onAdd) {
@@ -25,11 +26,14 @@ const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, onAdd }) => {
     return (
         <>
             <div 
-                className={`exercise-grid-card ${isSelected ? 'exercise-grid-card--selected' : ''}`} 
+                className={`exercise-grid-card ${isSelected ? 'exercise-grid-card--selected' : ''} ${isDisabled ? 'exercise-grid-card--disabled' : ''}`} 
                 onClick={handleCardClick}
             >
                 {/* Selection Checkbox Indicator */}
                 {isSelected && <div className="exercise-grid-card-check">✓</div>}
+                
+                {/* Owned Badge */}
+                {isDisabled && <div className="exercise-grid-card-owned">Already Added</div>}
 
                 {/* Info Button */}
                 <button 

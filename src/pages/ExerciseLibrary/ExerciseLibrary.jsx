@@ -52,7 +52,6 @@ const ExerciseLibrary = () => {
 
     const filteredExercises = useMemo(() => {
         let result = masterExercises
-            .filter(ex => !userExerciseIds.includes(ex.id))
             .map(ex => {
                 const primaryMuscle = ex.muscles?.find(m => m.isPrimary)?.name || '';
                 const secondaryMuscle = ex.muscles?.find(m => !m.isPrimary)?.name || '';
@@ -60,7 +59,8 @@ const ExerciseLibrary = () => {
                     ...ex,
                     primaryMuscle,
                     secondaryMuscle,
-                    equipment: ex.equipment?.name || ''
+                    equipment: ex.equipment?.name || '',
+                    isOwned: userExerciseIds.includes(ex.id)
                 };
             });
 
@@ -163,14 +163,38 @@ const ExerciseLibrary = () => {
 
                 <div className="exercise-library-grid">
                     {filteredExercises.length > 0 ? (
-                        filteredExercises.map((exercise) => (
-                            <ExerciseLibraryGridCard
-                                key={exercise.id}
-                                exercise={exercise}
-                                onToggle={handleToggleExercise}
-                                isSelected={selectedExercises.some(e => e.id === exercise.id)}
-                            />
-                        ))
+                        <>
+                            {/* Available Exercises */}
+                            {filteredExercises.filter(ex => !ex.isOwned).length > 0 && (
+                                <>
+                                    <div className="exercise-library-section-title">Available Exercises</div>
+                                    {filteredExercises.filter(ex => !ex.isOwned).map((exercise) => (
+                                        <ExerciseLibraryGridCard
+                                            key={exercise.id}
+                                            exercise={exercise}
+                                            onToggle={handleToggleExercise}
+                                            isSelected={selectedExercises.some(e => e.id === exercise.id)}
+                                        />
+                                    ))}
+                                </>
+                            )}
+
+                            {/* Already Added Exercises */}
+                            {filteredExercises.filter(ex => ex.isOwned).length > 0 && (
+                                <>
+                                    <div className="exercise-library-section-divider">
+                                        <span>Already Added</span>
+                                    </div>
+                                    {filteredExercises.filter(ex => ex.isOwned).map((exercise) => (
+                                        <ExerciseLibraryGridCard
+                                            key={exercise.id}
+                                            exercise={exercise}
+                                            isDisabled={true}
+                                        />
+                                    ))}
+                                </>
+                            )}
+                        </>
                     ) : (
                         <EmptyState
                             icon="🔍"
