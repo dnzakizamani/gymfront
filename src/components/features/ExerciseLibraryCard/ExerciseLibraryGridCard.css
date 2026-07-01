@@ -31,10 +31,40 @@
     transition: none;
 }
 
-.exercise-grid-card-check {
+/* Disabled/Owned state - gray out */
+.exercise-grid-card--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.exercise-grid-card--disabled:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--color-border-tertiary);
+}
+
+.exercise-grid-card--disabled:active {
+    transform: none;
+}
+
+/* Owned badge */
+.exercise-grid-card-owned {
     position: absolute;
     top: 8px;
     left: 8px;
+    padding: 4px 10px;
+    background: #666;
+    color: white;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 3;
+}
+
+.exercise-grid-card-check {
+    position: absolute;
+    top: 8px;
+    right: 8px;
     width: 24px;
     height: 24px;
     background: #FF6B00;
