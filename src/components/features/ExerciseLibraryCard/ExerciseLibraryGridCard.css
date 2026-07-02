@@ -134,6 +134,14 @@
     object-fit: contain;
 }
 
+.exercise-grid-card-modal-skeleton {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
 .exercise-grid-card-modal-close {
     position: absolute;
     top: 10px;
@@ -185,6 +193,19 @@
 .exercise-grid-card-image img {
     object-fit: contain;
     padding: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.exercise-grid-card-image-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0;
 }
 
 .exercise-grid-card-placeholder {
@@ -261,5 +282,65 @@
 
     .exercise-grid-card-name {
         font-size: 13px;
+    }
+}
+
+/* ======== SKELETON LOADING ======== */
+.exercise-grid-card--skeleton {
+    cursor: default;
+    pointer-events: none;
+}
+
+.exercise-grid-card--skeleton:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--color-border-tertiary);
+}
+
+.exercise-grid-card--skeleton .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+.exercise-grid-card--skeleton .skeleton-image {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+.exercise-grid-card--skeleton .skeleton-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.exercise-grid-card--skeleton .skeleton-title {
+    height: 16px;
+    width: 80%;
+}
+
+.exercise-grid-card--skeleton .skeleton-text {
+    height: 12px;
+    width: 60%;
+}
+
+.exercise-grid-card--skeleton .skeleton-badge {
+    height: 20px;
+    width: 50%;
+    border-radius: 10px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
     }
 }
