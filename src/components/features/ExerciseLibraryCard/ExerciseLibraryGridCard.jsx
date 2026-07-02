@@ -1,8 +1,26 @@
 import { useState } from 'react';
 import './ExerciseLibraryGridCard.css';
 
-const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, isDisabled, onAdd }) => {
+const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, isDisabled, onAdd, isLoading }) => {
     const [showModal, setShowModal] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageError, setImageError] = useState(false);
+    const [modalImageLoaded, setModalImageLoaded] = useState(false);
+    const [modalImageError, setModalImageError] = useState(false);
+
+    // Loading skeleton (card level)
+    if (isLoading) {
+        return (
+            <div className="exercise-grid-card exercise-grid-card--skeleton">
+                <div className="skeleton skeleton-image"></div>
+                <div className="skeleton-content">
+                    <div className="skeleton skeleton-title"></div>
+                    <div className="skeleton skeleton-text"></div>
+                    <div className="skeleton skeleton-badge"></div>
+                </div>
+            </div>
+        );
+    }
 
     const handleCardClick = (e) => {
         if (e.target.closest('.exercise-grid-card-info')) return;
@@ -47,11 +65,22 @@ const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, isDisabled, o
                 {/* Image Section */}
                 <div className="exercise-grid-card-image">
                     {exercise.imageUrl ? (
-                        <img
-                            src={exercise.imageUrl}
-                            alt={exercise.name}
-                            loading="lazy"
-                        />
+                        <>
+                            {!imageLoaded && !imageError && (
+                                <div className="exercise-grid-card-image-skeleton"></div>
+                            )}
+                            <img
+                                src={exercise.imageUrl}
+                                alt={exercise.name}
+                                loading="lazy"
+                                onLoad={() => setImageLoaded(true)}
+                                onError={() => setImageError(true)}
+                                style={{ opacity: imageLoaded ? 1 : 0 }}
+                            />
+                            {imageError && (
+                                <span className="exercise-grid-card-placeholder">💪</span>
+                            )}
+                        </>
                     ) : (
                         <span className="exercise-grid-card-placeholder">💪</span>
                     )}
@@ -77,7 +106,21 @@ const ExerciseLibraryGridCard = ({ exercise, onToggle, isSelected, isDisabled, o
                     <div className="exercise-grid-card-modal-content" onClick={e => e.stopPropagation()}>
                         <button className="exercise-grid-card-modal-close" onClick={closeModal}>×</button>
                         {exercise.imageUrl ? (
-                            <img src={exercise.imageUrl} alt={exercise.name} />
+                            <>
+                                {!modalImageLoaded && !modalImageError && (
+                                    <div className="exercise-grid-card-modal-skeleton"></div>
+                                )}
+                                <img 
+                                    src={exercise.imageUrl} 
+                                    alt={exercise.name}
+                                    onLoad={() => setModalImageLoaded(true)}
+                                    onError={() => setModalImageError(true)}
+                                    style={{ opacity: modalImageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+                                />
+                                {modalImageError && (
+                                    <div className="exercise-grid-card-modal-placeholder">💪</div>
+                                )}
+                            </>
                         ) : (
                             <div className="exercise-grid-card-modal-placeholder">💪</div>
                         )}

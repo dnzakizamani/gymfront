@@ -16,6 +16,7 @@ const ExerciseLibrary = () => {
     const [masterExercises, setMasterExercises] = useState([]);
     const [userExerciseIds, setUserExerciseIds] = useState([]);
     const [isSaving, setIsSaving] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -27,12 +28,17 @@ const ExerciseLibrary = () => {
                 }
             } catch (error) {
                 console.error('Failed to fetch exercises:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         const fetchUserExercises = async () => {
             const token = localStorage.getItem('token');
-            if (!token) return;
+            if (!token) {
+                setIsLoading(false);
+                return;
+            }
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-exercises`, {
                     headers: { 'Authorization': `Bearer ${token}` }
@@ -162,7 +168,19 @@ const ExerciseLibrary = () => {
                 />
 
                 <div className="exercise-library-grid">
-                    {filteredExercises.length > 0 ? (
+                    {/* Loading Skeletons */}
+                    {isLoading && (
+                        <>
+                            {[...Array(8)].map((_, index) => (
+                                <ExerciseLibraryGridCard
+                                    key={`skeleton-${index}`}
+                                    isLoading={true}
+                                />
+                            ))}
+                        </>
+                    )}
+
+                    {!isLoading && filteredExercises.length > 0 ? (
                         <>
                             {/* Available Exercises */}
                             {filteredExercises.filter(ex => !ex.isOwned).length > 0 && (
@@ -195,7 +213,7 @@ const ExerciseLibrary = () => {
                                 </>
                             )}
                         </>
-                    ) : (
+                    ) : !isLoading && (
                         <EmptyState
                             icon="🔍"
                             title="No exercises found"
